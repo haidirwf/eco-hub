@@ -1,0 +1,383 @@
+/* Konten Page CSS */
+
+.konten-hero {
+    background-color: var(--color-bg-white);
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.konten-hero h1 {
+    font-size: 48px;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+}
+
+.konten-hero .hero-subtext {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    width: 20px;
+    height: 20px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 16px 16px 16px 48px;
+    border: 1px solid var(--color-border);
+    border-radius: 50px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--color-green-primary);
+    box-shadow: 0 4px 12px rgba(45, 90, 39, 0.1);
+}
+
+/* Filter Bar */
+.filter-bar-sticky {
+    position: sticky;
+    top: 73px;
+    /* Height of navbar approx */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 0;
+    z-index: 90;
+    transition: top 0.3s;
+}
+
+/* Adjust sticky top if navbar scrolls away or changes height */
+.navbar.scrolled~.filter-bar-sticky {
+    top: 60px;
+}
+
+.filter-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    /* for scrollbar spacing if visible */
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.filter-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-pill {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-pill:hover {
+    border-color: var(--color-green-primary);
+    color: var(--color-green-primary);
+}
+
+.filter-pill.active {
+    background-color: var(--color-green-primary);
+    color: white;
+    border-color: var(--color-green-primary);
+}
+
+
+/* Layout */
+.content-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    /* Main content vs Sidebar */
+    gap: 40px;
+    align-items: start;
+    padding-top: 40px;
+}
+
+/* Articles Grid */
+.articles-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.article-item {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-green-light);
+}
+
+.article-thumb-placeholder {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-green-pale);
+    color: var(--color-green-primary);
+}
+
+.article-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-cat {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: var(--color-bg-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+    align-self: flex-start;
+}
+
+.article-body h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+}
+
+.article-excerpt {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-bg-secondary);
+    padding-top: 12px;
+}
+
+.bookmark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+}
+
+.bookmark-btn:hover {
+    color: var(--color-green-primary);
+}
+
+/* Sidebar Widgets */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.widget-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 24px;
+}
+
+.ecofact-card {
+    background-color: #FFF8E1;
+    /* Light amber bg */
+    border-color: #FFE0B2;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.widget-header h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.ecofact-content p {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.btn-text-icon {
+    background: none;
+    border: none;
+    color: #F57F17;
+    /* Darker amber */
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Quiz Styles */
+.quiz-step {
+    display: none;
+}
+
+.quiz-step.active {
+    display: block;
+    animation: fade-in 0.3s ease-in-out;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--color-bg-secondary);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--color-green-primary);
+    transition: width 0.3s;
+}
+
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.quiz-option {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.quiz-option:hover {
+    background-color: var(--color-bg-secondary);
+}
+
+.quiz-option.correct {
+    background-color: #Dcedc8;
+    border-color: #2e7d32;
+    color: #1b5e20;
+}
+
+.quiz-option.wrong {
+    background-color: #ffcdd2;
+    border-color: #c62828;
+    color: #b71c1c;
+}
+
+.feedback {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.feedback p {
+    margin-bottom: 12px;
+}
+
+.result-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+#quiz-result {
+    text-align: center;
+}
+
+/* No results */
+.no-results {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--color-text-muted);
+}
+
+.no-results h3 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .content-layout {
+        grid-template-columns: 1fr;
+        /* Stack sidebar below */
+    }
+
+    .articles-grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cols on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .articles-grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .articles-grid-layout {
+        grid-template-columns: 1fr;
+    }
+}

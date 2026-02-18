@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel — EcoSense</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            min-height: 500px;
+        }
+
+        .article-header h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .article-meta {
+            color: var(--color-text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 20px;
+        }
+
+        .article-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--color-text-primary);
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--color-text-muted);
+        }
+
+        .error {
+            color: var(--color-red-alert);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .wiki-credit {
+            margin-top: 40px;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border);
+            padding-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i data-lucide="leaf" color="var(--color-green-primary)"></i>
+                EcoSense
+            </a>
+            <div class="nav-menu">
+                <a href="konten.html" class="nav-link">Kembali</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container section">
+        <div class="article-container" id="content-box">
+            <div class="loading">Memuat artikel...</div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Get URL Param
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get('q') || 'Climate_change'; // Default
+        const titleOverride = params.get('title') || topic.replace(/_/g, ' ');
+
+        const contentBox = document.getElementById('content-box');
+
+        // Fetch from Wikipedia API
+        // https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Stack_Overflow&origin=*
+
+        async function fetchArticle() {
+            try {
+                const url = `https://id.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${topic}&origin=*&exintro=1&explaintext=0`;
+                // Using Indonesian Wikipedia (id.wikipedia.org). exintro=1 for intro only to be safe, or remove for full.
+
+                const res = await fetch(url);
+                const data = await res.json();
+                const pages = data.query.pages;
+                const pageId = Object.keys(pages)[0];
+
+                if (pageId === "-1") {
+                    contentBox.innerHTML = `<div class="error">Artikel tidak ditemukan.</div>`;
+                    return;
+                }
+
+                const page = pages[pageId];
+                const cleanContent = page.extract; // HTML content from Wiki
+
+                contentBox.innerHTML = `
+                    <div class="article-header fade-up visible">
+                        <h1>${page.title}</h1>
+                        <div class="article-meta">Sumber: Wikipedia Indonesia • ${new Date().toLocaleDateString('id-ID')}</div>
+                    </div>
+                    <div class="article-content fade-up visible">
+                        ${cleanContent}
+                    </div>
+                    <div class="wiki-credit">
+                        Konten diambil secara dinamis dari Wikipedia. <a href="https://id.wikipedia.org/wiki/${topic}" target="_blank">Lihat sumber asli</a>.
+                    </div>
+                `;
+
+            } catch (e) {
+                console.error(e);
+                contentBox.innerHTML = `<div class="error">Gagal memuat artikel. Periksa koneksi internet Anda.</div>`;
+            }
+        }
+
+        fetchArticle();
+    </script>
+</body>
+
+</html>

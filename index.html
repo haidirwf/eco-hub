@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSense — Kenali Bumi Kita, Jaga Lingkungan Kita</title>
+    <meta name="description" content="Platform edukasi dan pemantauan lingkungan interaktif untuk Indonesia. Cek kualitas udara, hitung jejak karbon, dan lapor isu lingkungan.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <i data-lucide="leaf" color="var(--color-green-primary)"></i>
+                EcoSense
+            </a>
+            
+            <div class="nav-menu hide-mobile">
+                <a href="index.html" class="nav-link active">Beranda</a>
+                <a href="about.html" class="nav-link">Tentang</a>
+                <a href="konten.html" class="nav-link">Edukasi</a>
+                <a href="lapor.html" class="nav-link">Lapor</a>
+                <a href="kontak.html" class="nav-link">Kontak</a>
+            </div>
+
+            <a href="lapor.html" class="btn btn-primary hide-mobile">Mulai Sekarang</a>
+
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-nav-list">
+            <a href="index.html" class="mobile-nav-link">Beranda</a>
+            <a href="about.html" class="mobile-nav-link">Tentang</a>
+            <a href="konten.html" class="mobile-nav-link">Edukasi</a>
+            <a href="lapor.html" class="mobile-nav-link">Lapor</a>
+            <a href="kontak.html" class="mobile-nav-link">Kontak</a>
+            <a href="lapor.html" class="btn btn-primary btn-full" style="margin-top: 20px;">Mulai Sekarang</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section section">
+        <div class="container hero-grid">
+            <div class="hero-content fade-up">
+                <p class="eyebrow">TECHSOFT 2026 — TEMA INNOVATE</p>
+                <h1>Kenali Bumi Kita,<br>Jaga Lingkungan Kita.</h1>
+                <p class="hero-subtext">EcoSense adalah platform edukasi dan pemantauan lingkungan interaktif yang membantu masyarakat Indonesia memahami kondisi lingkungan sekitar dan mengambil tindakan nyata.</p>
+                
+                <div class="hero-ctas">
+                    <a href="#aqi-widget" class="btn btn-primary">Cek Kondisi Udara</a>
+                    <a href="about.html" class="btn btn-outline">Pelajari Lebih</a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-val">12.000+</span>
+                        <span class="stat-lbl">Pengguna</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-val">34</span>
+                        <span class="stat-lbl">Kota Terpantau</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-val">5</span>
+                        <span class="stat-lbl">Isu Lingkungan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual fade-up" style="animation-delay: 0.2s;">
+                <div id="aqi-widget" class="aqi-card card">
+                    <div class="aqi-header">
+                        <div class="city-selector">
+                            <select id="city-select">
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                                <option value="Surabaya">Surabaya</option>
+                                <option value="Medan">Medan</option>
+                                <option value="Makassar">Makassar</option>
+                            </select>
+                        </div>
+                        <span id="aqi-status-badge" class="status-badge">Sedang</span>
+                    </div>
+                    
+                    <div class="aqi-main">
+                        <div class="aqi-value" id="aqi-value">87</div>
+                        <div class="aqi-label">US AQI</div>
+                    </div>
+
+                    <div class="aqi-details">
+                        <div class="detail-item">
+                            <i data-lucide="wind" size="16"></i>
+                            <span id="pm25-val">34</span>
+                            <small>PM2.5</small>
+                        </div>
+                        <div class="detail-item">
+                            <i data-lucide="cloud" size="16"></i>
+                            <span id="pm10-val">45</span>
+                            <small>PM10</small>
+                        </div>
+                        <div class="detail-item">
+                            <i data-lucide="droplets" size="16"></i>
+                            <span id="humidity-val">60%</span>
+                            <small>Kelembaban</small>
+                        </div>
+                    </div>
+
+                    <div class="aqi-footer">
+                        <button id="refresh-aqi" class="btn-refresh">
+                            <i data-lucide="refresh-cw" size="16"></i> Perbarui Data
+                        </button>
+                        <span class="last-updated">
+                            <span class="blink-dot"></span> Baru saja
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section section">
+        <div class="container">
+            <h2 class="text-white text-center fade-up" style="margin-bottom: 48px;">Apa yang Bisa Kamu Lakukan?</h2>
+            <div class="grid features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card fade-up" style="animation-delay: 0.1s;">
+                    <div class="feature-icon">
+                        <i data-lucide="wind" color="#8CB87E" size="32"></i>
+                    </div>
+                    <h3>Pantau Kualitas Udara</h3>
+                    <p>Monitor AQI real-time di 34+ kota Indonesia untuk menjaga kesehatanmu.</p>
+                    <a href="#aqi-widget" class="feature-link">Lihat Data →</a>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card fade-up" style="animation-delay: 0.2s;">
+                    <div class="feature-icon">
+                        <i data-lucide="calculator" color="#8CB87E" size="32"></i>
+                    </div>
+                    <h3>Kalkulator Jejak Karbon</h3>
+                    <p>Hitung emisi karbon harianmu dan dapatkan rekomendasi pengurangan.</p>
+                    <a href="#carbon-calc" class="feature-link">Hitung Sekarang →</a>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card fade-up" style="animation-delay: 0.3s;">
+                    <div class="feature-icon">
+                        <i data-lucide="megaphone" color="#8CB87E" size="32"></i>
+                    </div>
+                    <h3>Lapor Isu Lingkungan</h3>
+                    <p>Laporkan permasalahan lingkungan di sekitarmu agar segera ditindaklanjuti.</p>
+                    <a href="lapor.html" class="feature-link">Lapor Isu →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carbon Calculator -->
+    <section id="carbon-calc" class="carbon-section section">
+        <div class="container">
+            <div class="grid carbon-grid">
+                <div class="carbon-form-col fade-up">
+                    <h2 class="section-title">Hitung Jejak Karbon Harianmu</h2>
+                    <p class="section-subtitle">Estimasikan emisi CO₂ dari aktivitas sehari-harimu</p>
+                    
+                    <form id="carbon-form">
+                        <div class="form-group">
+                            <label>Transportasi Utama</label>
+                            <select id="transport" required>
+                                <option value="motor">Motor Pribadi</option>
+                                <option value="mobil">Mobil Pribadi</option>
+                                <option value="umum">Transportasi Umum</option>
+                                <option value="sepeda">Sepeda</option>
+                                <option value="jalan">Jalan Kaki</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Jarak Tempuh Harian (km)</label>
+                            <input type="number" id="distance" min="0" placeholder="Contoh: 15" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Penggunaan Listrik Bulanan (kWh)</label>
+                            <input type="number" id="electricity" min="0" placeholder="Contoh: 150" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pola Makan</label>
+                            <select id="diet">
+                                <option value="omnivora">Omnivora (Semua)</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pengelolaan Sampah</label>
+                            <select id="waste">
+                                <option value="tidak">Tidak Daur Ulang</option>
+                                <option value="sebagian">Daur Ulang Sebagian</option>
+                                <option value="penuh">Daur Ulang Penuh</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 20px;">Hitung Sekarang</button>
+                    </form>
+                </div>
+
+                <div class="carbon-result-col fade-up" style="animation-delay: 0.2s;">
+                    <div id="result-box" class="result-box hidden">
+                        <h3>Emisi Harian Kamu</h3>
+                        <div class="result-value">
+                            <span id="co2-value">0.00</span>
+                            <span class="unit">kg CO₂</span>
+                        </div>
+                        <div class="result-comparison">
+                            <p>Setara dengan menyerap polusi dari <strong id="tree-equiv">0</strong> pohon dalam sehari.</p>
+                        </div>
+                        <div id="verdict-banner" class="verdict-banner">SEDANG</div>
+                        
+                        <div class="recommendations">
+                            <h4>Rekomendasi untukmu:</h4>
+                            <ul id="rec-list">
+                                <!-- JS Populated -->
+                            </ul>
+                        </div>
+                        
+                        <button id="reset-calc" class="btn btn-outline btn-full" style="margin-top:20px">Hitung Ulang</button>
+                    </div>
+                    <div id="result-placeholder" class="result-placeholder">
+                        <i data-lucide="leaf" size="64" color="#B5CEB0"></i>
+                        <p>Isi formulir di samping untuk melihat hasil kalkulasi jejak karbonmu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section section">
+        <div class="container">
+            <div class="stats-row">
+                <div class="stat-block fade-up">
+                    <span class="stat-number count-up" data-target="847">0</span>
+                    <span class="stat-label">Laporan Masuk</span>
+                </div>
+                <div class="stat-divider-lg"></div>
+                <div class="stat-block fade-up" style="animation-delay: 0.1s;">
+                    <span class="stat-number count-up" data-target="23">0</span>
+                    <span class="stat-label">Kota Aktif</span>
+                </div>
+                <div class="stat-divider-lg"></div>
+                <div class="stat-block fade-up" style="animation-delay: 0.2s;">
+                    <span class="stat-number count-up" data-target="12400" data-suffix="+">0</span>
+                    <span class="stat-label">Pohon Diselamatkan</span>
+                </div>
+                <div class="stat-divider-lg"></div>
+                <div class="stat-block fade-up" style="animation-delay: 0.3s;">
+                    <span class="stat-number count-up" data-target="67" data-suffix="%">0</span>
+                    <span class="stat-label">Kenaikan Kesadaran</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="articles-section section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Artikel & Edukasi Terbaru</h2>
+                <a href="konten.html" class="link-arrow">Lihat Semua →</a>
+            </div>
+
+            <div class="articles-grid">
+                <!-- Featured Article -->
+                <div class="article-card featured fade-up">
+                    <div class="article-thumb" style="background-color: #E8F5E9;">
+                        <i data-lucide="cloud-fog" size="48" color="#2D5A27"></i>
+                    </div>
+                    <div class="article-content">
+                        <span class="badge badge-green">Polusi Udara</span>
+                        <h3>Mengapa Kualitas Udara Jakarta Makin Memburuk?</h3>
+                        <p>Analisis mendalam mengenai faktor-faktor penyebab polusi udara di ibukota dan dampaknya bagi kesehatan.</p>
+                        <div class="article-meta">
+                            <span>EcoSense Team</span> • <span>15 Feb 2026</span>
+                        </div>
+                        <a href="#" class="read-more">Baca Selengkapnya →</a>
+                    </div>
+                </div>
+
+                <!-- Side Articles -->
+                <div class="side-articles">
+                     <!-- 1 -->
+                    <div class="article-card small fade-up" style="animation-delay: 0.1s;">
+                        <div class="article-thumb-small" style="background-color: #FFF3E0">
+                            <i data-lucide="sun" size="24" color="#E65100"></i>
+                        </div>
+                        <div class="article-content-small">
+                            <span class="badge badge-amber">Perubahan Iklim</span>
+                            <h4>Cara Kerja PLTS dan Masa Depan Energi</h4>
+                            <div class="article-meta">14 Feb 2026</div>
+                        </div>
+                    </div>
+                     <!-- 2 -->
+                    <div class="article-card small fade-up" style="animation-delay: 0.2s;">
+                        <div class="article-thumb-small" style="background-color: #E1F5FE">
+                             <i data-lucide="waves" size="24" color="#01579B"></i>
+                        </div>
+                        <div class="article-content-small">
+                            <span class="badge badge-blue">Polusi Laut</span>
+                            <h4>Hutan Mangrove: Benteng Pesisir</h4>
+                            <div class="article-meta">12 Feb 2026</div>
+                        </div>
+                    </div>
+                     <!-- 3 -->
+                    <div class="article-card small fade-up" style="animation-delay: 0.3s;">
+                        <div class="article-thumb-small" style="background-color: #FBE9E7">
+                             <i data-lucide="trash-2" size="24" color="#BF360C"></i>
+                        </div>
+                        <div class="article-content-small">
+                            <span class="badge badge-red">Sampah</span>
+                            <h4>Bahaya Mikroplastik di Makanan Kita</h4>
+                            <div class="article-meta">10 Feb 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner section">
+        <div class="container text-center fade-up">
+            <h2>Bersama, Kita Jaga Bumi Indonesia.</h2>
+            <p>Mulai dari hal kecil. Lapor isu lingkungan di sekitarmu hari ini.</p>
+            <div class="cta-buttons">
+                <a href="lapor.html" class="btn btn-white">Lapor Sekarang</a>
+                <a href="about.html" class="btn btn-outline-white">Pelajari Lebih</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>🌿 EcoSense</h3>
+                    <p class="footer-tagline">Platform edukasi dan monitoring lingkungan untuk masa depan yang lebih baik.</p>
+                    <div class="social-icons">
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-heading">Navigasi</div>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="konten.html">Edukasi</a></li>
+                        <li><a href="lapor.html">Lapor</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-heading">Topik</div>
+                    <ul>
+                        <li><a href="#">Kualitas Udara</a></li>
+                        <li><a href="#">Perubahan Iklim</a></li>
+                        <li><a href="#">Konservasi</a></li>
+                        <li><a href="#">Energi Terbarukan</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-heading">TechSoft 2026</div>
+                    <ul>
+                        <li>Web Design Competition</li>
+                        <li>Tema: INNOVATE</li>
+                        <li>Sub-tema: Lingkungan</li>
+                        <li>HIMA-RPL Polindra</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 EcoSense. Dibuat untuk TECHSOFT 2026 — INNOVATE.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/aqi.js"></script>
+    <script src="js/carbon.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
