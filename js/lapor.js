@@ -99,6 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         if (window.lucide) lucide.createIcons();
+
+        // Trigger animations
+        setTimeout(() => {
+            const cards = feedList.querySelectorAll('.feed-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, index * 100);
+            });
+        }, 50);
     }
 
     function getStatusClass(status) {
@@ -126,22 +136,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Same UI Style logic as requested
             if (found) {
                 checkResult.innerHTML = `
-                    <div class="result-header">
-                         <i data-lucide="check-circle" size="16"></i> Laporan Ditemukan
+                    <div class="result-found-card">
+                        <div class="result-icon-box success">
+                            <i data-lucide="check-circle" class="icon-success"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Laporan Ditemukan</h4>
+                            <div class="result-detail-item"><strong>Jenis:</strong> ${found.type}</div>
+                            <div class="result-detail-item"><strong>Lokasi:</strong> ${found.location}</div>
+                            <span class="status-badge ${found.statusClass || getStatusClass(found.status)}">${found.status}</span>
+                        </div>
                     </div>
-                    <div style="font-weight:700; margin-bottom:4px;">${found.type}</div>
-                    <div style="font-size:13px; opacity:0.8;">${found.location}</div>
-                    <div class="result-status" style="margin-top:8px; display:inline-block; padding:4px 8px; background:rgba(255,255,255,0.8); border-radius:4px; font-weight:600; font-size:12px;">${found.status}</div>
                 `;
-                checkResult.className = 'check-result found fade-up visible';
+                checkResult.className = 'check-result-container fade-up visible';
             } else {
                 checkResult.innerHTML = `
-                    <div class="result-header">
-                        <i data-lucide="alert-circle" size="16"></i> Tidak Ditemukan
+                    <div class="result-not-found-card">
+                        <div class="result-icon-box error">
+                            <i data-lucide="alert-circle" class="icon-error"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Tidak Ditemukan</h4>
+                            <p>Nomor referensi <strong>${query}</strong> tidak terdaftar dlm sistem kami.</p>
+                        </div>
                     </div>
-                    <p style="margin:0;">Nomor referensi tidak terdaftar. Coba periksa kembali.</p>
                 `;
-                checkResult.className = 'check-result not-found fade-up visible';
+                checkResult.className = 'check-result-container fade-up visible';
             }
             if (window.lucide) lucide.createIcons();
         });

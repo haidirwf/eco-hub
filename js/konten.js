@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 7, title: "5 Tanaman Pembersih Udara Ruangan", category: "Polusi Udara", author: "Green Decor", date: "05 Feb 2026", thumbColor: "#E8F5E9", wikiTopic: "Tanaman_hias" },
         { id: 8, title: "Mengenal 'Carbon Offsetting' Lebih Dekat", category: "Perubahan Iklim", author: "EcoSense", date: "03 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "Perdagangan_emisi" },
         { id: 9, title: "Mengapa Penyu Makan Plastik?", category: "Polusi Laut", author: "Marine Bio", date: "01 Feb 2026", thumbColor: "#E1F5FE", wikiTopic: "Penyu" },
-        { id: 10, title: "Zero Waste Living: Mulai dari Mana?", category: "Pengelolaan Sampah", author: "Siska W", date: "28 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Nirlemen" },
+        { id: 10, title: "Zero Waste Living: Mulai dari Mana?", category: "Pengelolaan Sampah", author: "Siska W", date: "28 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Nirlimbah" },
         { id: 11, title: "Konservasi Orangutan Kalimantan", category: "Konservasi", author: "WWF Partner", date: "25 Jan 2026", thumbColor: "#E1F5FE", wikiTopic: "Orangutan" },
-        { id: 12, title: "Dampak Fast Fashion pada Lingkungan", category: "Pengelolaan Sampah", author: "Fashion Rev", date: "20 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Mode_cepat" }
+        { id: 12, title: "Dampak Fast Fashion pada Lingkungan", category: "Pengelolaan Sampah", author: "Fashion Rev", date: "20 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Fesyen_cepat" }
     ];
 
     const grid = document.getElementById('articles-grid');

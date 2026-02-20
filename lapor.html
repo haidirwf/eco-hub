@@ -289,6 +289,40 @@
         </div>
     </footer>
 
+    <!-- Report Detail Modal -->
+    <div id="report-modal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">
+                <i data-lucide="x" size="24"></i>
+            </button>
+            <div class="modal-header">
+                <h3 id="modal-type">Jenis Laporan</h3>
+                <div class="modal-meta">
+                    <span id="modal-ref">ECO-XXXX-XXXX</span> • <span id="modal-date">Tanggal</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-val-group">
+                    <span class="modal-label">Lokasi</span>
+                    <div class="modal-value">
+                        <i data-lucide="map-pin" size="14" style="display:inline; margin-right:4px;"></i>
+                        <span id="modal-loc">Lokasi kejadian</span>
+                    </div>
+                </div>
+                <div class="modal-val-group">
+                    <span class="modal-label">Status Laporan</span>
+                    <span id="modal-status-pill" class="status-pill">Diterima</span>
+                </div>
+                <div class="modal-val-group">
+                    <span class="modal-label">Deskripsi Laporan</span>
+                    <div id="modal-desc" class="modal-desc">
+                        Detail deskripsi akan muncul di sini.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/lapor.js"></script>
     <script>lucide.createIcons();</script>
