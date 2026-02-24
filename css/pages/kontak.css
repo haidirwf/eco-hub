@@ -1,14 +1,16 @@
 /* Kontak Page CSS */
 
 .kontak-hero {
-    background-color: var(--color-bg-secondary);
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
     text-align: center;
-    padding: 60px 0 40px;
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .kontak-hero h1 {
     font-size: 48px;
     margin-bottom: 16px;
+    color: var(--color-green-primary);
 }
 
 .kontak-layout {
@@ -168,7 +170,30 @@
 }
 
 @media (max-width: 768px) {
+    .kontak-hero {
+        padding: 40px 0;
+    }
+
     .kontak-hero h1 {
-        font-size: 40px;
+        font-size: 32px;
+    }
+
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+    }
+
+    .social-row {
+        justify-content: center;
+    }
+
+    .faq-toggle {
+        padding: 16px;
+        font-size: 15px;
+    }
+
+    .faq-content p {
+        padding: 16px;
     }
 }

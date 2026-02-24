@@ -17,19 +17,21 @@
     <link rel="stylesheet" href="css/components.css">
     <style>
         .article-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             background: white;
             padding: 40px;
             border-radius: 8px;
             border: 1px solid var(--color-border);
             min-height: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
 
         .article-header h1 {
-            font-size: 32px;
+            font-size: 40px;
             margin-bottom: 16px;
             font-weight: 800;
+            line-height: 1.2;
         }
 
         .article-meta {
@@ -47,7 +49,7 @@
         }
 
         .article-content p {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .loading {
@@ -64,10 +66,21 @@
 
         .wiki-credit {
             margin-top: 40px;
-            font-size: 12px;
+            font-size: 13px;
             color: var(--color-text-muted);
             border-top: 1px solid var(--color-border);
-            padding-top: 12px;
+            padding-top: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .article-container {
+                margin: 20px auto;
+                padding: 24px;
+            }
+
+            .article-header h1 {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
@@ -79,11 +92,35 @@
                 <i data-lucide="leaf" color="var(--color-green-primary)"></i>
                 EcoSense
             </a>
-            <div class="nav-menu">
-                <a href="konten.html" class="nav-link">Kembali</a>
+
+            <div class="nav-menu hide-mobile">
+                <a href="index.html" class="nav-link">Beranda</a>
+                <a href="about.html" class="nav-link">Tentang</a>
+                <a href="konten.html" class="nav-link active">Edukasi</a>
+                <a href="lapor.html" class="nav-link">Lapor</a>
+                <a href="kontak.html" class="nav-link">Kontak</a>
             </div>
+
+            <a href="lapor.html" class="btn btn-primary hide-mobile">Mulai Sekarang</a>
+
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-nav-list">
+            <a href="index.html" class="mobile-nav-link">Beranda</a>
+            <a href="about.html" class="mobile-nav-link">Tentang</a>
+            <a href="konten.html" class="mobile-nav-link">Edukasi</a>
+            <a href="lapor.html" class="mobile-nav-link">Lapor</a>
+            <a href="kontak.html" class="mobile-nav-link">Kontak</a>
+            <a href="lapor.html" class="btn btn-primary btn-full" style="margin-top: 20px;">Mulai Sekarang</a>
+        </div>
+    </div>
 
     <div class="container section">
         <div class="article-container" id="content-box">
@@ -98,6 +135,9 @@
         const params = new URLSearchParams(window.location.search);
         const topic = params.get('q') || 'Climate_change'; // Default
         const titleOverride = params.get('title') || topic.replace(/_/g, ' ');
+        const imgParam = params.get('img');
+        const defaultImg = "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1200";
+        const articleImgUrl = imgParam ? imgParam : defaultImg;
 
         const contentBox = document.getElementById('content-box');
 
@@ -115,7 +155,15 @@
                 const pageId = Object.keys(pages)[0];
 
                 if (pageId === "-1") {
-                    contentBox.innerHTML = `<div class="error">Artikel tidak ditemukan.</div>`;
+                    contentBox.innerHTML = `
+                        <div class="error fade-up visible" style="padding: 60px 20px;">
+                            <i data-lucide="file-warning" size="64" color="var(--color-red-alert)" style="margin-bottom: 20px;"></i>
+                            <h2 style="margin-bottom: 12px; color: var(--color-text-primary);">Artikel tidak ditemukan</h2>
+                            <p style="color: var(--color-text-muted); margin-bottom: 24px;">Maaf, artikel yang Anda cari tidak tersedia atau mungkin telah dihapus.</p>
+                            <a href="konten.html" class="btn btn-primary">Kembali ke Edukasi</a>
+                        </div>
+                    `;
+                    lucide.createIcons();
                     return;
                 }
 
@@ -124,8 +172,11 @@
 
                 contentBox.innerHTML = `
                     <div class="article-header fade-up visible">
-                        <h1>${page.title}</h1>
-                        <div class="article-meta">Sumber: Wikipedia Indonesia • ${new Date().toLocaleDateString('id-ID')}</div>
+                        <h1>${titleOverride}</h1>
+                        <div class="article-meta">Sumber Asli Wikipedia: <em>${page.title}</em> • ${new Date().toLocaleDateString('id-ID')}</div>
+                    </div>
+                    <div class="article-image fade-up visible" style="margin-bottom: 30px;">
+                        <img src="${articleImgUrl}" alt="Ilustrasi ${titleOverride}" style="width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 8px;">
                     </div>
                     <div class="article-content fade-up visible">
                         ${cleanContent}
@@ -137,12 +188,74 @@
 
             } catch (e) {
                 console.error(e);
-                contentBox.innerHTML = `<div class="error">Gagal memuat artikel. Periksa koneksi internet Anda.</div>`;
+                contentBox.innerHTML = `
+                    <div class="error fade-up visible" style="padding: 60px 20px;">
+                        <i data-lucide="wifi-off" size="64" color="var(--color-amber)" style="margin-bottom: 20px;"></i>
+                        <h2 style="margin-bottom: 12px; color: var(--color-text-primary);">Koneksi Bermasalah</h2>
+                        <p style="color: var(--color-text-muted); margin-bottom: 24px;">Gagal memuat artikel. Silakan periksa koneksi internet Anda.</p>
+                        <a href="konten.html" class="btn btn-primary">Kembali ke Edukasi</a>
+                    </div>
+                `;
+                lucide.createIcons();
             }
         }
 
         fetchArticle();
     </script>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>🌿 EcoSense</h3>
+                    <p class="footer-tagline">Platform edukasi dan monitoring lingkungan untuk masa depan yang lebih
+                        baik.</p>
+                    <div class="social-icons">
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-heading">Navigasi</div>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="konten.html">Edukasi</a></li>
+                        <li><a href="lapor.html">Lapor</a></li>
+                        <li><a href="kontak.html">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-heading">Topik</div>
+                    <ul>
+                        <li><a href="#">Kualitas Udara</a></li>
+                        <li><a href="#">Perubahan Iklim</a></li>
+                        <li><a href="#">Konservasi</a></li>
+                        <li><a href="#">Energi Terbarukan</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-heading">TechSoft 2026</div>
+                    <ul>
+                        <li>Web Design Competition</li>
+                        <li>Tema: INNOVATE</li>
+                        <li>Sub-tema: Lingkungan</li>
+                        <li>HIMA-RPL Polindra</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 EcoSense. Dibuat untuk TECHSOFT 2026 — INNOVATE.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>

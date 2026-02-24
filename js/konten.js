@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
        ARTICLE DATA & FILTER
        ----------------------------------------------------- */
     const articles = [
-        { id: 1, title: "Mengapa Jakarta Masuk 10 Kota Polusi Terburuk?", category: "Polusi Udara", author: "Rizky P", date: "15 Feb 2026", thumbColor: "#E8F5E9", wikiTopic: "Polusi_udara_di_Jakarta" },
-        { id: 2, title: "Cara Kerja PLTS dan Masa Depan Energi Terbarukan", category: "Perubahan Iklim", author: "Sarah A", date: "14 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "Energi_surya" },
-        { id: 3, title: "Hutan Mangrove: Benteng Terakhir Pesisir Indonesia", category: "Konservasi", author: "Budi T", date: "12 Feb 2026", thumbColor: "#E1F5FE", wikiTopic: "Hutan_bakau" },
-        { id: 4, title: "Bahaya Mikroplastik di Makanan Kita", category: "Polusi Laut", author: "Dina M", date: "10 Feb 2026", thumbColor: "#FBE9E7", wikiTopic: "Mikroplastik" },
-        { id: 5, title: "Tips Mengolah Kompos di Rumah Sempit", category: "Pengelolaan Sampah", author: "Eco Team", date: "09 Feb 2026", thumbColor: "#F3E5F5", wikiTopic: "Kompos" },
-        { id: 6, title: "El Nino dan La Nina: Apa Bedanya?", category: "Perubahan Iklim", author: "BMKG Info", date: "08 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "El_Niño" },
-        { id: 7, title: "5 Tanaman Pembersih Udara Ruangan", category: "Polusi Udara", author: "Green Decor", date: "05 Feb 2026", thumbColor: "#E8F5E9", wikiTopic: "Tanaman_hias" },
-        { id: 8, title: "Mengenal 'Carbon Offsetting' Lebih Dekat", category: "Perubahan Iklim", author: "EcoSense", date: "03 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "Perdagangan_emisi" },
-        { id: 9, title: "Mengapa Penyu Makan Plastik?", category: "Polusi Laut", author: "Marine Bio", date: "01 Feb 2026", thumbColor: "#E1F5FE", wikiTopic: "Penyu" },
-        { id: 10, title: "Zero Waste Living: Mulai dari Mana?", category: "Pengelolaan Sampah", author: "Siska W", date: "28 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Nirlimbah" },
-        { id: 11, title: "Konservasi Orangutan Kalimantan", category: "Konservasi", author: "WWF Partner", date: "25 Jan 2026", thumbColor: "#E1F5FE", wikiTopic: "Orangutan" },
-        { id: 12, title: "Dampak Fast Fashion pada Lingkungan", category: "Pengelolaan Sampah", author: "Fashion Rev", date: "20 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Fesyen_cepat" }
+        { id: 1, title: "Mengapa Jakarta Masuk 10 Kota Polusi Terburuk?", category: "Polusi Udara", author: "Rizky P", date: "15 Feb 2026", thumbColor: "#E8F5E9", wikiTopic: "Pencemaran_udara", imgUrl: "https://images.unsplash.com/photo-1698128827557-0b05ccb18fbf?auto=format&fit=crop&q=80&w=600" },
+        { id: 2, title: "Cara Kerja PLTS dan Masa Depan Energi Terbarukan", category: "Perubahan Iklim", author: "Sarah A", date: "14 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "Energi_surya", imgUrl: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=600" },
+        { id: 3, title: "Hutan Mangrove: Benteng Terakhir Pesisir Indonesia", category: "Konservasi", author: "Budi T", date: "12 Feb 2026", thumbColor: "#E1F5FE", wikiTopic: "Hutan_bakau", imgUrl: "https://images.unsplash.com/photo-1589556183130-530470785fab?auto=format&fit=crop&q=80&w=600" },
+        { id: 4, title: "Bahaya Mikroplastik di Makanan Kita", category: "Polusi Laut", author: "Dina M", date: "10 Feb 2026", thumbColor: "#FBE9E7", wikiTopic: "Mikroplastik", imgUrl: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&q=80&w=600" },
+        { id: 5, title: "Tips Mengolah Kompos di Rumah Sempit", category: "Pengelolaan Sampah", author: "Eco Team", date: "09 Feb 2026", thumbColor: "#F3E5F5", wikiTopic: "Kompos", imgUrl: "https://images.unsplash.com/photo-1644575881028-9f170fd241ed?auto=format&fit=crop&q=80&w=600" },
+        { id: 6, title: "El Nino dan La Nina: Apa Bedanya?", category: "Perubahan Iklim", author: "BMKG Info", date: "08 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "El_Niño", imgUrl: "https://images.unsplash.com/photo-1549885606-bbc17accf949?auto=format&fit=crop&q=80&w=600" },
+        { id: 7, title: "5 Tanaman Pembersih Udara Ruangan", category: "Polusi Udara", author: "Green Decor", date: "05 Feb 2026", thumbColor: "#E8F5E9", wikiTopic: "Tanaman_hias", imgUrl: "https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?auto=format&fit=crop&q=80&w=600" },
+        { id: 8, title: "Mengenal 'Carbon Offsetting' Lebih Dekat", category: "Perubahan Iklim", author: "EcoSense", date: "03 Feb 2026", thumbColor: "#FFF3E0", wikiTopic: "Perdagangan_emisi", imgUrl: "https://images.unsplash.com/photo-1598335624134-5bceb5de202d?auto=format&fit=crop&q=80&w=600" },
+        { id: 9, title: "Mengapa Penyu Makan Plastik?", category: "Polusi Laut", author: "Marine Bio", date: "01 Feb 2026", thumbColor: "#E1F5FE", wikiTopic: "Penyu", imgUrl: "https://images.unsplash.com/photo-1549557143-90d216195a97?auto=format&fit=crop&q=80&w=600" },
+        { id: 10, title: "Zero Waste Living: Mulai dari Mana?", category: "Pengelolaan Sampah", author: "Siska W", date: "28 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Nirlimbah", imgUrl: "https://images.unsplash.com/photo-1645739467767-ee1ea618d36c?auto=format&fit=crop&q=80&w=600" },
+        { id: 11, title: "Konservasi Orangutan Kalimantan", category: "Konservasi", author: "WWF Partner", date: "25 Jan 2026", thumbColor: "#E1F5FE", wikiTopic: "Orangutan", imgUrl: "https://images.unsplash.com/photo-1699709823274-f3cb659b640b?auto=format&fit=crop&q=80&w=600" },
+        { id: 12, title: "Dampak Fast Fashion pada Lingkungan", category: "Pengelolaan Sampah", author: "Fashion Rev", date: "20 Jan 2026", thumbColor: "#F3E5F5", wikiTopic: "Fesyen_cepat", imgUrl: "https://images.unsplash.com/photo-1495556650867-99590cea3657?auto=format&fit=crop&q=80&w=600" }
     ];
 
     const grid = document.getElementById('articles-grid');
@@ -44,10 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
             noResults.classList.add('hidden');
 
             grid.innerHTML = filtered.map(art => `
-                <a href="artikel.html?q=${art.wikiTopic || 'Lingkungan_hidup'}&title=${encodeURIComponent(art.title)}" class="article-item fade-up" style="text-decoration: none; color: inherit;">
-                    <div class="article-thumb-placeholder" style="background-color: ${art.thumbColor}">
-                        <i data-lucide="image" size="32" style="opacity:0.5; color: var(--color-green-primary);"></i>
-                    </div>
+                <a href="artikel.html?q=${art.wikiTopic || 'Lingkungan_hidup'}&title=${encodeURIComponent(art.title)}&img=${encodeURIComponent(art.imgUrl)}" class="article-item fade-up" style="text-decoration: none; color: inherit;">
+                    <div class="article-thumb" style="height: 180px; background-image: url('${art.imgUrl}'); background-size: cover; background-position: center;"></div>
                     <div class="article-body">
                         <span class="article-cat">${art.category}</span>
                         <h3>${art.title}</h3>

@@ -479,6 +479,22 @@
     background-color: var(--color-border);
 }
 
+@media (max-width: 768px) {
+    .stats-row {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .stat-divider-lg {
+        width: 60px;
+        height: 1px;
+    }
+
+    .stat-block .stat-number {
+        font-size: 40px;
+    }
+}
+
 
 /* Articles */
 .articles-section {
@@ -680,6 +696,12 @@
 
     .hero-stats {
         justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stat-divider {
+        display: none;
     }
 
     .hero-visual {

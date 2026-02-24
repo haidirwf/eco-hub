@@ -128,6 +128,7 @@ textarea {
 .radio-pills {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .radio-pill {
@@ -464,14 +465,59 @@ textarea {
         grid-template-columns: 1fr;
     }
 
+    .lapor-hero {
+        padding: 40px 0;
+    }
+
+    .lapor-hero h1 {
+        font-size: 32px;
+    }
+
+    .lapor-hero .hero-subtext {
+        font-size: 16px;
+        margin-bottom: 24px;
+    }
+
+    .file-drop-zone {
+        padding: 24px;
+    }
+
     .steps-row {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 4px;
+    }
+
+    .step-item {
+        width: 30%;
+        flex: 1;
+    }
+
+    .step-item h4 {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .step-item p {
+        font-size: 11px;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .step-circle {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 8px;
+        font-size: 14px;
     }
 
     .step-line {
-        display: none;
+        display: block;
+        flex-grow: 1;
+        max-width: 16px;
+        height: 1px;
+        margin: 16px 4px 0;
     }
 }
 

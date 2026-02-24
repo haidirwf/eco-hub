@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoSense — Kenali Bumi Kita, Jaga Lingkungan Kita</title>
-    <meta name="description" content="Platform edukasi dan pemantauan lingkungan interaktif untuk Indonesia. Cek kualitas udara, hitung jejak karbon, dan lapor isu lingkungan.">
-    
+    <meta name="description"
+        content="Platform edukasi dan pemantauan lingkungan interaktif untuk Indonesia. Cek kualitas udara, hitung jejak karbon, dan lapor isu lingkungan.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/pages/home.css">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -28,7 +33,7 @@
                 <i data-lucide="leaf" color="var(--color-green-primary)"></i>
                 EcoSense
             </a>
-            
+
             <div class="nav-menu hide-mobile">
                 <a href="index.html" class="nav-link active">Beranda</a>
                 <a href="about.html" class="nav-link">Tentang</a>
@@ -66,8 +71,9 @@
             <div class="hero-content fade-up">
                 <p class="eyebrow">TECHSOFT 2026 — TEMA INNOVATE</p>
                 <h1>Kenali Bumi Kita,<br>Jaga Lingkungan Kita.</h1>
-                <p class="hero-subtext">EcoSense adalah platform edukasi dan pemantauan lingkungan interaktif yang membantu masyarakat Indonesia memahami kondisi lingkungan sekitar dan mengambil tindakan nyata.</p>
-                
+                <p class="hero-subtext">EcoSense adalah platform edukasi dan pemantauan lingkungan interaktif yang
+                    membantu masyarakat Indonesia memahami kondisi lingkungan sekitar dan mengambil tindakan nyata.</p>
+
                 <div class="hero-ctas">
                     <a href="#aqi-widget" class="btn btn-primary">Cek Kondisi Udara</a>
                     <a href="about.html" class="btn btn-outline">Pelajari Lebih</a>
@@ -105,7 +111,7 @@
                         </div>
                         <span id="aqi-status-badge" class="status-badge">Sedang</span>
                     </div>
-                    
+
                     <div class="aqi-main">
                         <div class="aqi-value" id="aqi-value">87</div>
                         <div class="aqi-label">US AQI</div>
@@ -187,7 +193,7 @@
                 <div class="carbon-form-col fade-up">
                     <h2 class="section-title">Hitung Jejak Karbon Harianmu</h2>
                     <p class="section-subtitle">Estimasikan emisi CO₂ dari aktivitas sehari-harimu</p>
-                    
+
                     <form id="carbon-form">
                         <div class="form-group">
                             <label>Transportasi Utama</label>
@@ -199,7 +205,7 @@
                                 <option value="jalan">Jalan Kaki</option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>Jarak Tempuh Harian (km)</label>
                             <input type="number" id="distance" min="0" placeholder="Contoh: 15" required>
@@ -228,7 +234,8 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 20px;">Hitung Sekarang</button>
+                        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 20px;">Hitung
+                            Sekarang</button>
                     </form>
                 </div>
 
@@ -240,18 +247,20 @@
                             <span class="unit">kg CO₂</span>
                         </div>
                         <div class="result-comparison">
-                            <p>Setara dengan menyerap polusi dari <strong id="tree-equiv">0</strong> pohon dalam sehari.</p>
+                            <p>Setara dengan menyerap polusi dari <strong id="tree-equiv">0</strong> pohon dalam sehari.
+                            </p>
                         </div>
                         <div id="verdict-banner" class="verdict-banner">SEDANG</div>
-                        
+
                         <div class="recommendations">
                             <h4>Rekomendasi untukmu:</h4>
                             <ul id="rec-list">
                                 <!-- JS Populated -->
                             </ul>
                         </div>
-                        
-                        <button id="reset-calc" class="btn btn-outline btn-full" style="margin-top:20px">Hitung Ulang</button>
+
+                        <button id="reset-calc" class="btn btn-outline btn-full" style="margin-top:20px">Hitung
+                            Ulang</button>
                     </div>
                     <div id="result-placeholder" class="result-placeholder">
                         <i data-lucide="leaf" size="64" color="#B5CEB0"></i>
@@ -299,56 +308,65 @@
 
             <div class="articles-grid">
                 <!-- Featured Article -->
-                <div class="article-card featured fade-up">
-                    <div class="article-thumb" style="background-color: #E8F5E9;">
-                        <i data-lucide="cloud-fog" size="48" color="#2D5A27"></i>
+                <a href="artikel.html?q=Pencemaran_udara&title=Mengapa%20Jakarta%20Masuk%2010%20Kota%20Polusi%20Terburuk%3F&img=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1698128827557-0b05ccb18fbf%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D600"
+                    class="article-card featured fade-up"
+                    style="display: block; text-decoration: none; color: inherit;">
+                    <div class="article-thumb"
+                        style="background-image: url('https://images.unsplash.com/photo-1698128827557-0b05ccb18fbf?auto=format&fit=crop&q=80&w=600'); background-size: cover; background-position: center;">
                     </div>
                     <div class="article-content">
                         <span class="badge badge-green">Polusi Udara</span>
-                        <h3>Mengapa Kualitas Udara Jakarta Makin Memburuk?</h3>
-                        <p>Analisis mendalam mengenai faktor-faktor penyebab polusi udara di ibukota dan dampaknya bagi kesehatan.</p>
+                        <h3>Mengapa Jakarta Masuk 10 Kota Polusi Terburuk?</h3>
+                        <p>Analisis mendalam mengenai faktor-faktor penyebab polusi udara di ibukota dan dampaknya bagi
+                            kesehatan.</p>
                         <div class="article-meta">
-                            <span>EcoSense Team</span> • <span>15 Feb 2026</span>
+                            <span>Rizky P</span> • <span>15 Feb 2026</span>
                         </div>
-                        <a href="#" class="read-more">Baca Selengkapnya →</a>
+                        <span class="read-more">Baca Selengkapnya →</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Side Articles -->
                 <div class="side-articles">
-                     <!-- 1 -->
-                    <div class="article-card small fade-up" style="animation-delay: 0.1s;">
-                        <div class="article-thumb-small" style="background-color: #FFF3E0">
-                            <i data-lucide="sun" size="24" color="#E65100"></i>
+                    <!-- 1 -->
+                    <a href="artikel.html?q=Energi_surya&title=Cara%20Kerja%20PLTS%20dan%20Masa%20Depan%20Energi%20Terbarukan&img=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1509391366360-2e959784a276%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D600"
+                        class="article-card small fade-up"
+                        style="animation-delay: 0.1s; display: flex; text-decoration: none; color: inherit;">
+                        <div class="article-thumb-small"
+                            style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=600'); background-size: cover; background-position: center;">
                         </div>
                         <div class="article-content-small">
                             <span class="badge badge-amber">Perubahan Iklim</span>
-                            <h4>Cara Kerja PLTS dan Masa Depan Energi</h4>
+                            <h4>Cara Kerja PLTS dan Masa Depan Energi Terbarukan</h4>
                             <div class="article-meta">14 Feb 2026</div>
                         </div>
-                    </div>
-                     <!-- 2 -->
-                    <div class="article-card small fade-up" style="animation-delay: 0.2s;">
-                        <div class="article-thumb-small" style="background-color: #E1F5FE">
-                             <i data-lucide="waves" size="24" color="#01579B"></i>
+                    </a>
+                    <!-- 2 -->
+                    <a href="artikel.html?q=Hutan_bakau&title=Hutan%20Mangrove%3A%20Benteng%20Terakhir%20Pesisir%20Indonesia&img=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1589556183130-530470785fab%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D600"
+                        class="article-card small fade-up"
+                        style="animation-delay: 0.2s; display: flex; text-decoration: none; color: inherit;">
+                        <div class="article-thumb-small"
+                            style="background-image: url('https://images.unsplash.com/photo-1589556183130-530470785fab?auto=format&fit=crop&q=80&w=600'); background-size: cover; background-position: center;">
                         </div>
                         <div class="article-content-small">
-                            <span class="badge badge-blue">Polusi Laut</span>
-                            <h4>Hutan Mangrove: Benteng Pesisir</h4>
+                            <span class="badge badge-blue">Konservasi</span>
+                            <h4>Hutan Mangrove: Benteng Terakhir Pesisir Indonesia</h4>
                             <div class="article-meta">12 Feb 2026</div>
                         </div>
-                    </div>
-                     <!-- 3 -->
-                    <div class="article-card small fade-up" style="animation-delay: 0.3s;">
-                        <div class="article-thumb-small" style="background-color: #FBE9E7">
-                             <i data-lucide="trash-2" size="24" color="#BF360C"></i>
+                    </a>
+                    <!-- 3 -->
+                    <a href="artikel.html?q=Mikroplastik&title=Bahaya%20Mikroplastik%20di%20Makanan%20Kita&img=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1621451537084-482c73073a0f%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D600"
+                        class="article-card small fade-up"
+                        style="animation-delay: 0.3s; display: flex; text-decoration: none; color: inherit;">
+                        <div class="article-thumb-small"
+                            style="background-image: url('https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&q=80&w=600'); background-size: cover; background-position: center;">
                         </div>
                         <div class="article-content-small">
-                            <span class="badge badge-red">Sampah</span>
+                            <span class="badge badge-red">Polusi Laut</span>
                             <h4>Bahaya Mikroplastik di Makanan Kita</h4>
                             <div class="article-meta">10 Feb 2026</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -372,14 +390,15 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>🌿 EcoSense</h3>
-                    <p class="footer-tagline">Platform edukasi dan monitoring lingkungan untuk masa depan yang lebih baik.</p>
+                    <p class="footer-tagline">Platform edukasi dan monitoring lingkungan untuk masa depan yang lebih
+                        baik.</p>
                     <div class="social-icons">
                         <a href="#"><i data-lucide="instagram"></i></a>
                         <a href="#"><i data-lucide="twitter"></i></a>
                         <a href="#"><i data-lucide="youtube"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-links">
                     <div class="footer-heading">Navigasi</div>
                     <ul>
@@ -411,7 +430,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 EcoSense. Dibuat untuk TECHSOFT 2026 — INNOVATE.</p>
             </div>
@@ -426,4 +445,5 @@
         lucide.createIcons();
     </script>
 </body>
+
 </html>

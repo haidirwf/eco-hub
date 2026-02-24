@@ -179,12 +179,12 @@
 .mobile-nav-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
     text-align: center;
 }
 
 .mobile-nav-link {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: var(--color-text-primary);
 }
@@ -285,6 +285,45 @@
 
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 24px;
     }
+}
+
+/* Forms (Standardized) */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: var(--color-white);
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--color-text-primary);
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-green-primary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
 }
