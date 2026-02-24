@@ -1,48 +1,48 @@
 :root {
   /* Backgrounds */
-  --color-bg-primary: #F5F2EB;
+  --color-bg-primary: #f5f2eb;
   /* Warm off-white — main background */
-  --color-bg-secondary: #EDEAE1;
+  --color-bg-secondary: #edeae1;
   /* Slightly darker warm white */
-  --color-bg-dark: #1A1F16;
+  --color-bg-dark: #1a1f16;
   /* Deep forest dark — used for sections */
-  --color-bg-card: #FFFFFF;
+  --color-bg-card: #ffffff;
   /* Pure white cards */
 
   /* Brand Colors */
-  --color-green-primary: #2D5A27;
+  --color-green-primary: #2d5a27;
   /* Deep forest green — primary brand */
-  --color-green-mid: #4A7C42;
+  --color-green-mid: #4a7c42;
   /* Mid green — secondary elements */
-  --color-green-light: #8CB87E;
+  --color-green-light: #8cb87e;
   /* Light green — accents */
-  --color-green-pale: #D4E8CD;
+  --color-green-pale: #d4e8cd;
   /* Pale green — tag backgrounds */
 
   /* Accent */
-  --color-earth: #8B6914;
+  --color-earth: #8b6914;
   /* Earth brown — warm accent */
-  --color-amber: #D4870C;
+  --color-amber: #d4870c;
   /* Amber — alert/warning states */
-  --color-red-alert: #C0392B;
+  --color-red-alert: #c0392b;
   /* Alert red — poor air quality */
 
   /* Text */
-  --color-text-primary: #1A1F16;
+  --color-text-primary: #1a1f16;
   /* Near-black — main text */
-  --color-text-secondary: #4A5240;
+  --color-text-secondary: #4a5240;
   /* Dark gray-green — secondary text */
-  --color-text-muted: #7A8470;
+  --color-text-muted: #7a8470;
   /* Muted — captions, meta */
-  --color-text-on-dark: #F5F2EB;
+  --color-text-on-dark: #f5f2eb;
   /* Light text on dark backgrounds */
 
   /* Borders & Dividers */
-  --color-border: #C8C4BB;
-  --color-border-green: #B5CEB0;
+  --color-border: #c8c4bb;
+  --color-border-green: #b5ceb0;
 
   /* Utility */
-  --color-white: #FFFFFF;
+  --color-white: #ffffff;
   --color-black: #000000;
 
   /* Spacing */
@@ -73,7 +73,7 @@ html {
 }
 
 body {
-  font-family: 'Host Grotesk', sans-serif;
+  font-family: "Host Grotesk", sans-serif;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.5;
@@ -179,7 +179,9 @@ p {
 .fade-up {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 .fade-up.visible {

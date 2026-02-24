@@ -1,11 +1,11 @@
 # EcoSense — Platform Edukasi & Monitoring Lingkungan
 
 ## Tim
-idal nyari dimsum mentai terenak di cikarang mohon infonya trmks.
+**idal nyari dimsum mentai terenak di cikarang mohon infonya trmks** (IDN Boarding School)
 
 ## Anggota Tim
-- Ketua: [Muhammad Haidar Rauf Prayogo]
-- Anggota 1: [Haidar]
+- Ketua: Muhammad Haidar Rauf Prayogo
+- Anggota 1: Haidar
 
 ## Deskripsi Karya
 EcoSense adalah platform web edukasi dan pemantauan lingkungan interaktif yang dikembangkan
