@@ -217,7 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         const nama = document.getElementById("nama").value;
         const jenis = document.getElementById("jenis").value;
-        const lokasi = document.getElementById("lokasi").value;
+        const lokasiInput = document.getElementById("lokasi");
+        const lokasi = lokasiInput.value;
+        const lat = lokasiInput.dataset.lat || null;
+        const lng = lokasiInput.dataset.lng || null;
+
         const deskripsi = document.getElementById("deskripsi").value;
         const ref = "ECO-2026-" + Math.floor(1000 + Math.random() * 9000);
 
@@ -225,6 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
           ref: ref,
           type: jenis,
           location: lokasi,
+          lat: lat ? parseFloat(lat) : null,
+          lng: lng ? parseFloat(lng) : null,
           desc: deskripsi,
           time: "Baru saja",
           status: "Diterima",
@@ -245,6 +251,11 @@ document.addEventListener("DOMContentLoaded", () => {
           .getElementById("report-form-card")
           .scrollIntoView({ behavior: "smooth", block: "start" });
 
+        // Gamification Hook
+        if (window.addEcoPoints) {
+          window.addEcoPoints(50, "Melaporkan Isu Lingkungan");
+        }
+
         // Reset
         form.reset();
         submitBtn.classList.remove("loading");
@@ -263,4 +274,156 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // --- Picker Map Logic ---
+  const pickerMapDiv = document.getElementById("picker-map");
+  if (pickerMapDiv && window.L) {
+    const locInput = document.getElementById("lokasi");
+    const gpsBtn = document.getElementById("btn-get-location");
+
+    // Auto-detect Jakarta roughly
+    const pickerMap = L.map("picker-map").setView([-6.2088, 106.8456], 11);
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      {
+        attribution: "&copy; OpenStreetMap",
+        subdomains: "abcd",
+        maxZoom: 20,
+      },
+    ).addTo(pickerMap);
+
+    let pickerMarker = null;
+
+    async function reverseGeocode(lat, lng) {
+      try {
+        locInput.value = "Sedang mencari alamat...";
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`,
+          {
+            headers: { "Accept-Language": "id-ID,id;q=0.9" },
+          },
+        );
+        const data = await res.json();
+
+        let address =
+          data.display_name || `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+        if (data.address) {
+          const { road, suburb, city, town, village } = data.address;
+          const parts = [road, suburb || village, city || town].filter(Boolean);
+          if (parts.length > 0) address = parts.join(", ");
+        }
+        locInput.value = address;
+        locInput.dataset.lat = lat;
+        locInput.dataset.lng = lng;
+      } catch (e) {
+        locInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+        locInput.dataset.lat = lat;
+        locInput.dataset.lng = lng;
+      }
+    }
+
+    pickerMap.on("click", (e) => {
+      const lat = e.latlng.lat;
+      const lng = e.latlng.lng;
+      if (pickerMarker) {
+        pickerMarker.setLatLng(e.latlng);
+      } else {
+        pickerMarker = L.marker(e.latlng).addTo(pickerMap);
+      }
+      reverseGeocode(lat, lng);
+    });
+
+    if (gpsBtn) {
+      gpsBtn.addEventListener("click", () => {
+        if ("geolocation" in navigator) {
+          gpsBtn.innerHTML =
+            '<i class="spinner" style="display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin 1s linear infinite;"></i>';
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const lat = position.coords.latitude;
+              const lng = position.coords.longitude;
+              pickerMap.setView([lat, lng], 15);
+              if (pickerMarker) {
+                pickerMarker.setLatLng([lat, lng]);
+              } else {
+                pickerMarker = L.marker([lat, lng]).addTo(pickerMap);
+              }
+              reverseGeocode(lat, lng);
+              gpsBtn.innerHTML = '<i data-lucide="crosshair"></i>';
+              if (window.lucide)
+                window.lucide.createIcons({ root: gpsBtn.parentElement });
+            },
+            () => {
+              alert("Gagal mendapatkan lokasi GPS.");
+              gpsBtn.innerHTML = '<i data-lucide="crosshair"></i>';
+              if (window.lucide)
+                window.lucide.createIcons({ root: gpsBtn.parentElement });
+            },
+          );
+        } else {
+          alert("Browser tidak mensupport Geolocation.");
+        }
+      });
+    }
+  }
+
+  // --- Map Logic ---
+  const mapContainer = document.getElementById("lapor-map");
+  let mainMap = null;
+  let mainMarkersGroup = null;
+
+  if (mapContainer && window.L) {
+    mainMap = L.map("lapor-map").setView([-6.2088, 106.8456], 9);
+
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      {
+        attribution: "&copy; OpenStreetMap",
+        subdomains: "abcd",
+        maxZoom: 20,
+      },
+    ).addTo(mainMap);
+
+    mainMarkersGroup = L.layerGroup().addTo(mainMap);
+  }
+
+  const originalRenderFeed = renderFeed;
+  renderFeed = function () {
+    originalRenderFeed();
+
+    if (mainMap && mainMarkersGroup && window.L) {
+      mainMarkersGroup.clearLayers();
+      const reports = getReports();
+
+      const coordsFallbackDB = {
+        "ECO-2026-1001": [-6.215, 106.91],
+        "ECO-2026-1002": [-6.91, 107.61],
+        "ECO-2026-1003": [-6.34, 106.73],
+      };
+
+      reports.forEach((m) => {
+        let lat =
+          m.lat ||
+          (coordsFallbackDB[m.ref] ? coordsFallbackDB[m.ref][0] : null);
+        let lng =
+          m.lng ||
+          (coordsFallbackDB[m.ref] ? coordsFallbackDB[m.ref][1] : null);
+
+        if (lat && lng) {
+          const badgeHtml = `<div style="background-color:var(--color-green-primary);width:16px;height:16px;border-radius:50%;border:2px solid white;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></div>`;
+          const customIcon = L.divIcon({
+            html: badgeHtml,
+            className: "",
+            iconSize: [16, 16],
+            iconAnchor: [8, 8],
+          });
+          L.marker([lat, lng], { icon: customIcon })
+            .addTo(mainMarkersGroup)
+            .bindPopup(m.type + " - " + m.location.split(",")[0]);
+        }
+      });
+    }
+  };
+
+  if (typeof renderFeed === "function") renderFeed();
 });
