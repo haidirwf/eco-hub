@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitur & Layanan — EcoSense</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/components.css" />
+
+    <style>
+      .features-hero {
+        background: linear-gradient(
+          135deg,
+          var(--color-bg-primary) 0%,
+          rgba(212, 232, 205, 0.4) 100%
+        );
+        padding: 80px 0 60px;
+        text-align: center;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .features-hero h1 {
+        font-size: 48px;
+        color: var(--color-text-primary);
+        margin-bottom: 16px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .features-hero p {
+        font-size: 20px;
+        color: var(--color-text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+        padding: 60px 0;
+      }
+
+      .feature-card {
+        background: white;
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        border-color: var(--color-green-light);
+      }
+
+      .feature-icon-box {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(45, 90, 39, 0.05);
+        color: var(--color-green-primary);
+        margin-bottom: 24px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon-box {
+        background: var(--color-green-primary);
+        color: white;
+        transform: scale(1.1) rotate(-5deg);
+      }
+
+      .feature-card h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+        color: var(--color-text-primary);
+      }
+
+      .feature-card p {
+        color: var(--color-text-muted);
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+        flex-grow: 1;
+      }
+
+      .feature-card .cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--color-green-primary);
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: auto;
+        transition: gap 0.2s ease;
+      }
+
+      .feature-card .cta-link:hover {
+        gap: 12px;
+      }
+
+      /* Small decorative elements */
+      .bg-pattern {
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 232, 205, 0.5) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.5;
+      }
+
+      .feature-card * {
+        z-index: 1;
+        position: relative;
+      }
+
+      @media (max-width: 768px) {
+        .features-hero {
+          padding: 60px 0 40px;
+        }
+
+        .features-hero h1 {
+          font-size: 36px;
+        }
+
+        .features-hero p {
+          font-size: 16px;
+          padding: 0 20px;
+        }
+
+        .features-grid {
+          padding: 40px 0;
+        }
+      }
+    </style>
+
+    <!-- Leaflet CSS for possible gamification widget loading -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="css/gamification.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="index.html" class="nav-brand">
+          <i data-lucide="leaf" color="var(--color-green-primary)"></i>
+          EcoSense
+        </a>
+
+        <div class="nav-menu hide-mobile">
+          <a href="index.html" class="nav-link">Beranda</a>
+          <a href="fitur.html" class="nav-link active">Fitur</a>
+          <a href="about.html" class="nav-link">Tentang</a>
+          <a href="konten.html" class="nav-link">Edukasi</a>
+          <a href="lapor.html" class="nav-link">Lapor</a>
+          <a href="kontak.html" class="nav-link">Kontak</a>
+        </div>
+
+        <a href="lapor.html" class="btn btn-primary hide-mobile"
+          >Mulai Sekarang</a
+        >
+
+        <button class="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+      <div class="mobile-nav-list">
+        <a href="index.html" class="mobile-nav-link">Beranda</a>
+        <a href="fitur.html" class="mobile-nav-link">Fitur</a>
+        <a href="about.html" class="mobile-nav-link">Tentang</a>
+        <a href="konten.html" class="mobile-nav-link">Edukasi</a>
+        <a href="lapor.html" class="mobile-nav-link">Lapor</a>
+        <a href="kontak.html" class="mobile-nav-link">Kontak</a>
+        <a
+          href="lapor.html"
+          class="btn btn-primary btn-full"
+          style="margin-top: 20px"
+          >Mulai Sekarang</a
+        >
+      </div>
+    </div>
+
+    <header class="features-hero fade-up">
+      <div class="container">
+        <h1>Dashboard Fitur Lengkap</h1>
+        <p>
+          Jelajahi berbagai alat dan kapabilitas yang EcoSense miliki untuk
+          membantu Anda peduli terhadap bumi.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.1s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="wind" size="32"></i>
+          </div>
+          <h3>Pemantau Kualitas Udara</h3>
+          <p>
+            Integrasi langsung dengan API cuaca OpenMeteo yang menyajikan data
+            indeks kualitas udara (*AQI*), curah polutan (PM2.5 & PM10) secara
+            akurat dari setiap kota besar di Indonesia.
+          </p>
+          <a href="index.html#aqi-section" class="cta-link"
+            >Cek Udara Sekarang <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.2s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="calculator" size="32"></i>
+          </div>
+          <h3>Kalkulator Jejak Karbon</h3>
+          <p>
+            Hitung berapa kilogram emisi gas rumah kaca harian dari transportasi
+            bermotor, konsumsi listrik, jenis diet makanan, serta manajemen
+            pembuangan sampah Anda.
+          </p>
+          <a href="index.html#carbon-calc" class="cta-link"
+            >Hitung Emisi Saya <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.3s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="map-pin" size="32"></i>
+          </div>
+          <h3>Pelaporan Interaktif (Geocoding)</h3>
+          <p>
+            Lihat tumpukan sampah atau pencemaran sungai? Laporkan secara
+            langsung. Dilengkapi Mini-Map Leaflet pendeteksi koordinat lokasi
+            satelit dengan autokomplit nama alamat.
+          </p>
+          <a href="lapor.html" class="cta-link"
+            >Buka Halaman Lapor <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.4s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="map" size="32"></i>
+          </div>
+          <h3>Peta Sebaran Isu Publik</h3>
+          <p>
+            Lacak laporan komunitas atas berbagai kerusakan di sekeliling
+            wilayah Anda secara transparan. Setiap kali Anda melapor, titik pin
+            merah seketika menyembul di peta satelit digital.
+          </p>
+          <a href="lapor.html" class="cta-link"
+            >Jelajahi Peta <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.5s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="library" size="32"></i>
+          </div>
+          <h3>Pusat Edukasi Lingkungan</h3>
+          <p>
+            Jutaan ilmu hijau merangkum isu Perubahan Iklim, Deforestasi Hutan,
+            Pertanian Organik, dan Penghematan Energi secara lengkap, mengambil
+            rujukan materi langsung dari Ensiklopedia (API Wikipedia HD).
+          </p>
+          <a href="konten.html" class="cta-link"
+            >Mulai Belajar <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card fade-up" style="animation-delay: 0.6s">
+          <div class="bg-pattern"></div>
+          <div class="feature-icon-box">
+            <i data-lucide="award" size="32"></i>
+          </div>
+          <h3>PWA & Sistem Gamifikasi</h3>
+          <p>
+            Ekosistem aplikasi web progresif (Bisa dipasang seperti aplikasi
+            Mobile). Hadir dengan penghargaan gamifikasi koin **EcoWarrior** di
+            setiap kali keberhasilan menyelamatkan bumi!
+          </p>
+          <!-- Modal triggred purely via widget -->
+          <a
+            href="javascript:void(0)"
+            onclick="
+              if (window.showGamificationModal) window.showGamificationModal();
+              else
+                alert(
+                  'Isi kalkulator karbon atau melapor untuk mengaktifkan profil!',
+                );
+            "
+            class="cta-link"
+            >Lihat Level Saya <i data-lucide="arrow-right" size="18"></i
+          ></a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>🌿 EcoSense</h3>
+            <p class="footer-tagline">
+              Platform edukasi dan monitoring lingkungan untuk masa depan yang
+              lebih baik.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i data-lucide="instagram"></i></a>
+              <a href="#"><i data-lucide="twitter"></i></a>
+              <a href="#"><i data-lucide="youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-heading">Navigasi</div>
+            <ul>
+              <li><a href="index.html">Beranda</a></li>
+              <li><a href="fitur.html">Fitur</a></li>
+              <li><a href="about.html">Tentang</a></li>
+              <li><a href="konten.html">Edukasi</a></li>
+              <li><a href="lapor.html">Lapor</a></li>
+              <li><a href="kontak.html">Kontak</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-heading">Topik</div>
+            <ul>
+              <li><a href="#">Kualitas Udara</a></li>
+              <li><a href="#">Perubahan Iklim</a></li>
+              <li><a href="#">Konservasi</a></li>
+              <li><a href="#">Energi Terbarukan</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-heading">TechSoft 2026</div>
+            <ul>
+              <li>Web Design Competition</li>
+              <li>Tema: INNOVATE</li>
+              <li>Sub-tema: Lingkungan</li>
+              <li>HIMA-RPL Polindra</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            &copy; 2026 EcoSense. Dibuat untuk TECHSOFT 2026 — INNOVATE oleh tim
+            <strong
+              >idal nyari dimsum mentai terenak di cikarang mohon infonya
+              trmks</strong
+            >
+            (IDN Boarding School). Hak cipta dilindungi.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/gamification.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .catch((err) => console.log("SW error", err));
+        });
+      }
+    </script>
+  </body>
+</html>
