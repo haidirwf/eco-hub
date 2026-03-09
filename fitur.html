@@ -82,10 +82,20 @@
         transition: all 0.3s ease;
       }
 
+      /* Removed icon hover animation as requested */
       .feature-card:hover .feature-icon-box {
         background: var(--color-green-primary);
         color: white;
-        transform: scale(1.1) rotate(-5deg);
+      }
+
+      .feature-image {
+        width: calc(100% + 64px);
+        /* Negate the padding to bleed */
+        margin: -32px -32px 24px -32px;
+        height: 200px;
+        object-fit: cover;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
       }
 
       .feature-card h3 {
@@ -225,6 +235,11 @@
         <!-- Feature 1 -->
         <div class="feature-card fade-up" style="animation-delay: 0.1s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=600"
+            alt="Pemantau Kualitas Udara"
+          />
           <div class="feature-icon-box">
             <i data-lucide="wind" size="32"></i>
           </div>
@@ -242,6 +257,11 @@
         <!-- Feature 2 -->
         <div class="feature-card fade-up" style="animation-delay: 0.2s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=600"
+            alt="Kalkulator Jejak Karbon"
+          />
           <div class="feature-icon-box">
             <i data-lucide="calculator" size="32"></i>
           </div>
@@ -259,6 +279,11 @@
         <!-- Feature 3 -->
         <div class="feature-card fade-up" style="animation-delay: 0.3s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=600"
+            alt="Pelaporan Interaktif (Geocoding)"
+          />
           <div class="feature-icon-box">
             <i data-lucide="map-pin" size="32"></i>
           </div>
@@ -276,6 +301,11 @@
         <!-- Feature 4 -->
         <div class="feature-card fade-up" style="animation-delay: 0.4s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600"
+            alt="Peta Sebaran Isu Publik"
+          />
           <div class="feature-icon-box">
             <i data-lucide="map" size="32"></i>
           </div>
@@ -293,6 +323,11 @@
         <!-- Feature 5 -->
         <div class="feature-card fade-up" style="animation-delay: 0.5s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1503694978374-8a2fa686963a?auto=format&fit=crop&q=80&w=600"
+            alt="Pusat Edukasi Lingkungan"
+          />
           <div class="feature-icon-box">
             <i data-lucide="library" size="32"></i>
           </div>
@@ -310,6 +345,11 @@
         <!-- Feature 6 -->
         <div class="feature-card fade-up" style="animation-delay: 0.6s">
           <div class="bg-pattern"></div>
+          <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=600"
+            alt="Gamifikasi dan PWA"
+          />
           <div class="feature-icon-box">
             <i data-lucide="award" size="32"></i>
           </div>
