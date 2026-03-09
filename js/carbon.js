@@ -157,17 +157,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Verdict
     let verdict = "RENDAH";
     let color = "var(--color-green-primary)";
-    if (target > 10) {
-      verdict = "SEDANG";
+
+    if (target > 10 && target <= 20) {
+      verdict = "MENENGAH";
       color = "var(--color-amber)";
-    }
-    if (target > 20) {
+    } else if (target > 20) {
       verdict = "TINGGI";
-      color = "var(--color-red-alert)";
+      color = "#e53e3e"; // Distinct Red for High Emission
     }
 
     verdictBanner.innerText = verdict;
     verdictBanner.style.backgroundColor = color;
+    co2Span.style.color = color;
+
+    // Add glow effect to the number if it's high for better urgency UI
+    if (target > 20) {
+      co2Span.style.textShadow = "0 0 10px rgba(229, 62, 62, 0.3)";
+    } else {
+      co2Span.style.textShadow = "none";
+    }
 
     // Recommendations
     let recs = [];
