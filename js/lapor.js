@@ -147,41 +147,53 @@ document.addEventListener("DOMContentLoaded", () => {
       const query = checkInput.value.trim().toUpperCase();
       if (!query) return;
 
-      checkResult.classList.remove("hidden");
-      const reports = getReports();
-      const found = reports.find((r) => r.ref === query);
+      // UX loading feedback
+      const originalText = checkBtn.innerText;
+      checkBtn.innerHTML =
+        '<i class="spinner" style="display:inline-block;width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin 1s linear infinite;margin-right:8px;"></i> Mencari...';
+      checkBtn.disabled = true;
+      checkResult.classList.add("hidden");
 
-      // Same UI Style logic as requested
-      if (found) {
-        checkResult.innerHTML = `
-                    <div class="result-found-card">
-                        <div class="result-icon-box success">
-                            <i data-lucide="check-circle" class="icon-success"></i>
-                        </div>
-                        <div class="result-content">
-                            <h4>Laporan Ditemukan</h4>
-                            <div class="result-detail-item"><strong>Jenis:</strong> ${found.type}</div>
-                            <div class="result-detail-item"><strong>Lokasi:</strong> ${found.location}</div>
-                            <span class="status-badge ${found.statusClass || getStatusClass(found.status)}">${found.status}</span>
-                        </div>
-                    </div>
-                `;
-        checkResult.className = "check-result-container fade-up visible";
-      } else {
-        checkResult.innerHTML = `
-                    <div class="result-not-found-card">
-                        <div class="result-icon-box error">
-                            <i data-lucide="alert-circle" class="icon-error"></i>
-                        </div>
-                        <div class="result-content">
-                            <h4>Tidak Ditemukan</h4>
-                            <p>Nomor referensi <strong>${query}</strong> tidak terdaftar dlm sistem kami.</p>
-                        </div>
-                    </div>
-                `;
-        checkResult.className = "check-result-container fade-up visible";
-      }
-      if (window.lucide) lucide.createIcons();
+      setTimeout(() => {
+        checkResult.classList.remove("hidden");
+        const reports = getReports();
+        const found = reports.find((r) => r.ref === query);
+
+        // Same UI Style logic as requested
+        if (found) {
+          checkResult.innerHTML = `
+                      <div class="result-found-card">
+                          <div class="result-icon-box success">
+                              <i data-lucide="check-circle" class="icon-success"></i>
+                          </div>
+                          <div class="result-content">
+                              <h4>Laporan Ditemukan</h4>
+                              <div class="result-detail-item"><strong>Jenis:</strong> ${found.type}</div>
+                              <div class="result-detail-item"><strong>Lokasi:</strong> ${found.location}</div>
+                              <span class="status-badge ${found.statusClass || getStatusClass(found.status)}">${found.status}</span>
+                          </div>
+                      </div>
+                  `;
+          checkResult.className = "check-result-container fade-up visible";
+        } else {
+          checkResult.innerHTML = `
+                      <div class="result-not-found-card">
+                          <div class="result-icon-box error">
+                              <i data-lucide="alert-circle" class="icon-error"></i>
+                          </div>
+                          <div class="result-content">
+                              <h4>Tidak Ditemukan</h4>
+                              <p>Nomor referensi <strong>${query}</strong> tidak terdaftar dlm sistem kami.</p>
+                          </div>
+                      </div>
+                  `;
+          checkResult.className = "check-result-container fade-up visible";
+        }
+
+        checkBtn.innerHTML = originalText;
+        checkBtn.disabled = false;
+        if (window.lucide) lucide.createIcons();
+      }, 600);
     });
   }
 

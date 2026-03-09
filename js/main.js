@@ -12,10 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleMenu() {
     mobileMenu.classList.toggle("active");
     overlay.classList.toggle("active");
-
-    // Animate hamburger to X (CSS handling mostly, but class toggles state)
     hamburger.classList.toggle("active");
   }
+
+  // Close mobile menu on link click (UX Fix)
+  const mobileLinks = document.querySelectorAll(
+    ".mobile-nav-link, .mobile-menu .btn",
+  );
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileMenu.classList.contains("active")) {
+        toggleMenu();
+      }
+    });
+  });
 
   // Navbar Scroll Effect
   const navbar = document.querySelector(".navbar");
